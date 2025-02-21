@@ -1,9 +1,0 @@
-[submodule "angular-basico"]
-	path = angular-basico
-	url = https://github.com/wandderley/angular-basico.git
-[submodule "meu-primeiro-app"]
-	path = meu-primeiro-app
-	url = https://github.com/wandderley/meu-primeiro-app.git
-[submodule "login-page"]
-	path = login-page
-	url = https://github.com/wandderley/login-page.git
