@@ -1,12 +1,12 @@
 {
   "products": [
     {
-      "title": "Produto de Teste Editado",
+      "isTrusted": true,
       "id": "1"
     },
     {
-      "id": "992c",
-      "title": "Luiz"
+      "title": "Luiz 2",
+      "id": "992c"
     },
     {
       "id": "51cc",
@@ -27,6 +27,10 @@
     {
       "id": "e4e4",
       "title": "Moletom"
+    },
+    {
+      "title": "Criando novo produto 2",
+      "id": "5f13"
     }
   ]
 }
