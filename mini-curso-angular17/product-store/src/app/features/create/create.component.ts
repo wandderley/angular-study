@@ -29,7 +29,7 @@ export class CreateComponent {
       nonNullable: true,
       validators: Validators.required,
     }),
-  })
+  });
 
   onSubmit(){  
     this.productsService.post({

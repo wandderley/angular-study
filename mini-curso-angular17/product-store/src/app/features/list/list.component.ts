@@ -22,7 +22,7 @@ export class ListComponent {
   productsService = inject(ProductsService);
   router = inject(Router);
 
-  products: Product[] = []
+  products: Product[] = [];
 
   ngOnInit() {
     this.productsService.getAll().subscribe((products) => {
@@ -30,7 +30,7 @@ export class ListComponent {
     });
   }
 
-  onEdit() {
-    this.router.navigateByUrl('/edit-product')
+  onEdit(product: Product) {
+    this.router.navigate(['/edit-product', product.id]);
   }
 }
