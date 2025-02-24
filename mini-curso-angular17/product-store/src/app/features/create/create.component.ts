@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ProductsService } from '../../shared/services/products.service';
 import { Router } from '@angular/router';
 
@@ -36,12 +36,7 @@ export class CreateComponent {
       title: this.form.controls.title.value,
     })
     .subscribe(() => {
-      this.matSnackbar.open('Produto criado com sucesso!', 'OK', {
-        duration: 3000,
-        horizontalPosition: 'right',
-        verticalPosition: 'top'
-      });
-
+      this.matSnackbar.open('Produto criado com sucesso!', 'OK');
       this.router.navigateByUrl('/');
     })
   }
