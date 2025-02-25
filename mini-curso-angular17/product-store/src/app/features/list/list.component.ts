@@ -4,36 +4,8 @@ import { Product } from '../../shared/interfaces/product.interface';
 import { CardComponent } from './components/card/card.component';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { filter } from 'rxjs';
-
-@Component({
-  selector: 'app-confirmation-dialog',
-  template: `
-    <h2 mat-dialog-title>Deletar Produto</h2>
-    <mat-dialog-content>
-      Tem certeza que deseja deletar este produto?
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button (click)="onNo()">Não</button>
-      <button mat-button (click)="onYes()" cdkFocusInitial>Sim</button>
-  </mat-dialog-actions>
-  `,
-  imports: [MatButtonModule, MatDialogModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class ConfirmationDialogComponent {
-
-  matDialogRef = inject(MatDialogRef);
-
-  onNo() {
-    this.matDialogRef.close(false)
-  }
-  onYes() {
-    this.matDialogRef.close(true)
-  }
-}
+import { ConfirmationDialogService } from '../../shared/services/confirmation-dialog.service';
 
 
 @Component({
@@ -50,7 +22,7 @@ export class ListComponent {
 
   productsService = inject(ProductsService);
   router = inject(Router);
-  matDialog = inject(MatDialog);
+  confirmationDialogService = inject(ConfirmationDialogService);
 
   products: Product[] = [];
 
@@ -65,16 +37,15 @@ export class ListComponent {
   }
 
   onDelete(product: Product) {
-    this.matDialog
-      .open(ConfirmationDialogComponent)
-      .afterClosed()
+    this.confirmationDialogService
+      .openDialog()
       .pipe(filter((answer) => answer === true))
-      .subscribe(() => {
-        this.productsService.delete(product.id).subscribe(()=>{
+      .subscribe(()=> {
+        this.productsService.delete(product.id).subscribe(() => {
           this.productsService.getAll().subscribe((products) => {
             this.products = products;
           });
-        })
-      });
+      })      
+    });
   }
 }
