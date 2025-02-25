@@ -13,14 +13,19 @@ import { Product } from '../../../../shared/interfaces/product.interface';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-
+  
   product = input.required<Product>();
-
+  
   @Output() edit = new EventEmitter();
-
+  @Output() delete = new EventEmitter();
+  
   productTitle = computed(()=> this.product().title);
-
+  
   onEdit() {
     this.edit.emit();
   }  
+  
+  onDelete() {
+    this.delete.emit();
+  }
 }
